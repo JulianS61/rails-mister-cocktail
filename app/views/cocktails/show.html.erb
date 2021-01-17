@@ -1,19 +1,25 @@
-<h1><%= @cocktail.name %></h1>
+<h1>
+  <%= @cocktail.name %>
+  <%= link_to icon('fas','bomb'), cocktail_path(@cocktail), method: :delete, data: { confirm: 'Do you delete this cocktail ?' }%>
+</h1>
 <p>Nice Cocktail, seems delicicious !</p>
 
 <ul>
-  <% @doses.each do |dose| %>
+  <% @cocktail.doses.each do |dose| %>
     <li>
       <%= dose.ingredient.name %> - <%= dose.description %>
-      <%= link_to icon('fas','bomb'), dose_path(dose), method: :delete, data: { confirm: 'Do you want your cocktail to explode ?' }%>
+      <%= link_to icon('fas','bomb'), dose_path(dose), method: :delete, data: { confirm: 'Do you delete this ingredient ?' }%>
     </li>
   <% end %>
 
 </ul>
 
-<%= link_to 'Add ingredient', new_cocktail_dose_path(@cocktail) %>
+<hr>
 
-<br>
-<br>
+<h1>Add some ingredients to this cocktail :</h1>
 
-<%= link_to 'Back to list', cocktails_path %>
+<%= simple_form_for [@cocktail, @dose] do |f| %>
+  <%= f.input :description, input_html: { autocomplete: "off"} %>
+  <%= f.association :ingredient, prompt: "Select Ingredient" %>
+  <%= f.submit 'Add', class: "btn btn-primary" %>
+<% end %>

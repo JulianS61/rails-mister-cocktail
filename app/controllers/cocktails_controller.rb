@@ -1,5 +1,7 @@
 class CocktailsController < ApplicationController
-  before_action :find_params_id, only: :show
+  before_action :find_params_id, only: %i[show destroy]
+
+  def home; end
 
   def index
     @cocktails = Cocktail.all
@@ -19,7 +21,12 @@ class CocktailsController < ApplicationController
   end
 
   def show
-    @doses = Dose.where(cocktail_id: @cocktail)
+    @dose = Dose.new
+  end
+
+  def destroy
+    @cocktail.destroy
+    redirect_to :cocktails
   end
 
   private
