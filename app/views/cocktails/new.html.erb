@@ -1,6 +1,7 @@
 <h1>Cocktails</h1>
 <%= simple_form_for @cocktail do |f| %>
   <%= f.input :name, input_html: { autocomplete: "off"} %>
+  <%= f.input :description, input_html: { autocomplete: "off"} %>
   <%= f.submit 'Add', class: "btn btn-primary" %>
   <%= link_to 'Cancel', :back, class: "btn btn-outline-primary" %>
 <% end %>

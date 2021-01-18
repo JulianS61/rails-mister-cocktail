@@ -84,8 +84,10 @@
 
 .card-trip .card-trip-infos {
   padding: 16px;
+}
+
+.card-trip .card-trip-infos .card-trip-info-flex {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
-  position: relative;
+  align-items: center;
 }
