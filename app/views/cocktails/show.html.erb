@@ -1,25 +1,36 @@
-<h1>
-  <%= @cocktail.name %>
-  <%= link_to icon('fas','bomb'), cocktail_path(@cocktail), method: :delete, data: { confirm: 'Do you delete this cocktail ?' }%>
-</h1>
-<p>Nice Cocktail, seems delicicious !</p>
+<div class="row">
+  <div class="col-12 col-md-6">
+    <div class="card-trip mb-3">
+      <img src="https://source.unsplash.com/collection/10595326/drink-%26-cocktails" />
+      <div class="card-trip-infos">
+        <div>
+          <h1>
+            <%= @cocktail.name %>
+            <%= link_to icon('fas','bomb'), cocktail_path(@cocktail), method: :delete, data: { confirm: 'Do you delete this cocktail ?' }%>
+          </h1>
+          <p>Nice Cocktail, seems delicicious !</p>
+        </div>
+        <h2 class="card-trip-pricing">£99.99</h2>
+      </div>
+    </div>
+  </div>
 
-<ul>
-  <% @cocktail.doses.each do |dose| %>
-    <li>
-      <%= dose.ingredient.name %> - <%= dose.description %>
-      <%= link_to icon('fas','bomb'), dose_path(dose), method: :delete, data: { confirm: 'Do you delete this ingredient ?' }%>
-    </li>
-  <% end %>
-
-</ul>
-
-<hr>
-
-<h1>Add some ingredients to this cocktail :</h1>
-
-<%= simple_form_for [@cocktail, @dose] do |f| %>
-  <%= f.input :description, input_html: { autocomplete: "off"} %>
-  <%= f.association :ingredient, prompt: "Select Ingredient" %>
-  <%= f.submit 'Add', class: "btn btn-primary" %>
-<% end %>
+  <div class="col-12 col-md-6">
+    <div class="card-trip p-3">
+      <ul class='list-group'>
+        <% @cocktail.doses.each do |dose| %>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <%= dose.ingredient.name %> - <%= dose.description %>
+            <%= link_to icon('fas','bomb'), dose_path(dose), method: :delete, data: { confirm: 'Do you delete this ingredient ?' }%>
+          </li>
+        <% end %>
+      </ul>
+      <hr>
+      <%= simple_form_for [@cocktail, @dose] do |f| %>
+        <%= f.input :description, label: false, placeholder: 'Dose',input_html: { autocomplete: "off"}, wrapper_html: { class: 'mb-1' } %>
+        <%= f.association :ingredient, label: false, collection: Ingredient.order('name'), prompt: "Ingredients", wrapper_html: { class: 'mb-1' } %>
+        <%= f.button :submit, 'Add', class: "btn btn-primary block center-block" %>
+      <% end %>
+    </div>
+  </div>
+</div>

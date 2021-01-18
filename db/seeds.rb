@@ -11,12 +11,14 @@ require 'JSON'
 url = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list'
 ingredients = JSON.parse(URI.open(url).read)
 
-puts 'Delete Ingredients ...'
-Ingredient.destroy_all
+if Rails.env.development?
+  puts 'Delete Ingredients ...'
+  Ingredient.destroy_all
+end
 
 puts 'Seeding Ingredients DB ...'
 ingredients['drinks'].each_with_index do |ingredient, i|
-  Ingredient.create!(name: ingredient['strIngredient1'])
+  Ingredient.create!(name: ingredient['strIngredient1'].capitalize)
   puts "Created #{i + 1} of #{ingredients['drinks'].length} ingredients ..."
 end
 

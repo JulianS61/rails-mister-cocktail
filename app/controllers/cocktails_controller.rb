@@ -1,7 +1,9 @@
 class CocktailsController < ApplicationController
   before_action :find_params_id, only: %i[show destroy]
 
-  def home; end
+  def home
+    @any_instance = Cocktail.any?
+  end
 
   def index
     @cocktails = Cocktail.all
