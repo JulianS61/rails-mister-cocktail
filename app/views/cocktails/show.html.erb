@@ -2,7 +2,11 @@
   <%# Cocktail Card %>
   <div class="col-12 col-md-6">
     <div class="card-trip mb-3">
-      <img src="https://source.unsplash.com/collection/10595326/drink-%26-cocktails" />
+      <% if @cocktail.picture.attached? %>
+        <%= cl_image_tag(@cocktail.picture.key, crop: :fill) %>
+      <% else %>
+        <img src="https://source.unsplash.com/collection/10595326/drink-%26-cocktails" />
+      <% end %>
       <div class="card-trip-infos">
         <div class="card-trip-info-flex">
           <h1>

@@ -1,9 +1,9 @@
-<div class="banner vh-100" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= image_path 'banner/banner_img.jpg' %>);">
+<div class="banner vh-100" style="background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(<%= cl_image_path('pjoo9mtpceorsd7ndkky', crop: :fill) %>);">
   <div class="container">
     <h1 class="title-font"><%= icon('fas','cocktail') %> Mr. Cocktail</h1>
     <p>Keep your cocktails recipes in safe place.</p>
     <% if @any_instance %>
-      <%= link_to "Let's to your cocktail list", cocktails_path, class: "btn btn-primary" %>
+      <%= link_to "Let's go to your cocktail list", cocktails_path, class: "btn btn-primary" %>
     <% else %>
       <%= link_to "Let's start", new_cocktail_path, class: "btn btn-primary" %>
     <% end %>
