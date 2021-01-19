@@ -24,6 +24,8 @@ class CocktailsController < ApplicationController
 
   def show
     @dose = Dose.new
+    @post = Post.new
+    @avg_rating = rating_average
   end
 
   def destroy
@@ -39,5 +41,11 @@ class CocktailsController < ApplicationController
 
   def find_params_id
     @cocktail = Cocktail.find(params[:id])
+  end
+
+  def rating_average
+    ratings = @cocktail.posts.map { |post| post.rating }
+    average = ratings.sum.to_f / ratings.size
+    average.nan? ? 0 : average
   end
 end

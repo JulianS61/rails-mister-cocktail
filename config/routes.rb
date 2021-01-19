@@ -3,7 +3,10 @@ Rails.application.routes.draw do
 
   resources :cocktails, only: %i[index show new create destroy] do
     resources :doses, only: [:create]
+    resources :posts, only: [:create]
   end
+
+  resources :ingredients, only: [:update]
 
   resources :doses, only: [:destroy]
 end

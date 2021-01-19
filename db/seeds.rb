@@ -18,7 +18,7 @@ end
 
 puts 'Seeding Ingredients DB ...'
 ingredients['drinks'].each_with_index do |ingredient, i|
-  Ingredient.create!(name: ingredient['strIngredient1'].capitalize)
+  Ingredient.create!(name: ingredient['strIngredient1'].capitalize, like: 0)
   puts "Created #{i + 1} of #{ingredients['drinks'].length} ingredients ..."
 end
 

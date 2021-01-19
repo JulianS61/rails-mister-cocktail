@@ -1,4 +1,5 @@
 <div class="row">
+  <%# Cocktail Card %>
   <div class="col-12 col-md-6">
     <div class="card-trip mb-3">
       <img src="https://source.unsplash.com/collection/10595326/drink-%26-cocktails" />
@@ -8,22 +9,27 @@
             <%= @cocktail.name %>
             <%= link_to icon('fas','bomb'), cocktail_path(@cocktail), method: :delete, data: { confirm: 'Do you delete this cocktail ?' }%>
           </h1>
-          <h2 class="card-trip-pricing">£99.99</h2>
+          <h2 class="card-trip-pricing">
+            <%= icon('fas','star') * @avg_rating %><%= icon('far','star') * ( 5 - @avg_rating) %>
+          </h2>
         </div>
         <p><%= simple_format(@cocktail.description) %></p>
       </div>
     </div>
   </div>
 
+  <%# Ingredient List %>
   <div class="col-12 col-md-6">
-    <div class="card-trip p-3">
+    <div class="card-trip p-3 mb-3">
       <ul class='list-group'>
         <% @cocktail.doses.each do |dose| %>
           <li class="list-group-item d-flex justify-content-between align-items-center">
             <div>
-              <%= dose.ingredient.favorite ? icon('fas','heart') : icon('far','heart')%>
-              <%= dose.ingredient.name %> - <%= dose.quantity %>
+              <%= link_to icon('fas','heart-broken'), "#" %>
+              <%= dose.ingredient.like %>
+              <%= link_to icon('fas','heart'), "#" %>
             </div>
+            <%= dose.ingredient.name %> - <%= dose.quantity %>
             <%= link_to icon('fas','bomb'), dose_path(dose), method: :delete, data: { confirm: 'Do you delete this ingredient ?' }%>
           </li>
         <% end %>
@@ -34,6 +40,30 @@
         <%= f.association :ingredient, label: false, collection: Ingredient.order('name'), prompt: "Ingredients", wrapper_html: { class: 'mb-1' } %>
         <%= f.button :submit, 'Add', class: "btn btn-primary block center-block" %>
       <% end %>
+    </div>
+  </div>
+
+  <%# Comment List %>
+  <div class="col-12">
+    <div class="card-trip p-3">
+      <%= simple_form_for [@cocktail, @post] do |f| %>
+        <%= f.input :rating, as: :radio_buttons, collection: 0..5, wrapper: :horizontal_collection_inline, wrapper_html: { class: 'mb-1' } %>
+        <%= f.input :content, label: false, placeholder: 'Please leave a nice comment ...',input_html: { autocomplete: "off"}, wrapper_html: { class: 'mb-1' } %>
+        <%= f.button :submit, 'Comment', class: "btn btn-primary block center-block" %>
+      <% end %>
+      <hr>
+      <ul class='list-group'>
+        <% @cocktail.posts.each do |post| %>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <h2>
+              <%= simple_format(post.content) %>
+            </h2>
+            <span class="text-secondary">
+              <%= icon('fas','star') * post.rating %><%= icon('far','star') * ( 5 - post.rating) %>
+            </span>
+          </li>
+        <% end %>
+      </ul>
     </div>
   </div>
 </div>
