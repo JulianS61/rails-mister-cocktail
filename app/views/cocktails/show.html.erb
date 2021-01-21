@@ -53,7 +53,7 @@
   <div class="col-12">
     <div class="card-trip p-3">
       <%= simple_form_for [@cocktail, @post] do |f| %>
-        <%= f.input :rating, as: :radio_buttons, collection: 0..5, wrapper: :horizontal_collection_inline, wrapper_html: { class: 'mb-1' } %>
+        <%= f.input :rating, as: :radio_buttons, label: false, collection: 0..5, wrapper: :horizontal_collection_inline, wrapper_html: { class: 'mb-1' } %>
         <%= f.input :content, label: false, placeholder: 'Please leave a nice comment ...',input_html: { autocomplete: "off"}, wrapper_html: { class: 'mb-1' } %>
         <%= f.button :submit, 'Comment', class: "btn btn-primary block center-block mb-1" %>
       <% end %>
