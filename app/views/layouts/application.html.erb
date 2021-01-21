@@ -15,15 +15,11 @@
   <body>
 
     <% unless params[:action] == "home" %>
-      <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark justify-content-between mb-3">
-        <%= link_to icon('fas','cocktail') + " Mr. Cocktail", "/", class: "navbar-brand mb-0 h1 text-primary title-font" %>
-        <% if params[:action] == "index" %>
-          <%= link_to "Add new cocktail", new_cocktail_path, class: "btn btn-outline-primary my-2 my-sm-0" %>
-        <% else %>
-          <%= link_to 'Back to list', cocktails_path, class: "btn btn-outline-primary my-2 my-sm-0"  %>
-        <% end %>
-      </nav>
-
+      <% if ['index','create'].include?(params[:action]) %>
+        <%= render 'shared/navbar_index', cocktail: @coctail %>
+      <% else %>
+        <%= render 'shared/navbar'%>
+      <% end %>
       <div class="container">
         <%= yield %>
       </div>

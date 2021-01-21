@@ -1,8 +1,8 @@
-<h1>Cocktails</h1>
+<h1>Add a new Cocktail</h1>
 <%= simple_form_for @cocktail do |f| %>
-  <%= f.input :name, input_html: { autocomplete: "off"} %>
-  <%= f.input :description, input_html: { autocomplete: "off"} %>
-  <%= f.input :picture, as: :file %>
+  <%= f.input :name, label: false, placeholder: 'Cocktail Name', input_html: { autocomplete: "off"} %>
+  <%= f.input :description, label: false, placeholder: 'Description', input_html: { autocomplete: "off"} %>
+  <%= f.input :picture, as: :file, label: false %>
   <%= f.submit 'Add', class: "btn btn-primary" %>
   <%= link_to 'Cancel', :back, class: "btn btn-outline-primary" %>
 <% end %>

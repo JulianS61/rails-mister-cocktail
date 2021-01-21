@@ -1,0 +1,15 @@
+  <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark justify-content-between mb-3">
+  <%= link_to icon('fas','cocktail') + " Mr. Cocktail", "/", class: "navbar-brand mb-0 h1 text-primary title-font" %>
+
+  <%= link_to "Add new cocktail", new_cocktail_path, class: "btn btn-outline-primary my-2 my-sm-0" %>
+
+  <div class="dropdown">
+    <button class="btn btn-outline-primary my-2 my-sm-0 dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Add Cocktail
+    </button>
+    <div class="dropdown-menu dropdown-menu-right p-3" aria-labelledby="dropdownMenu">
+      <%= render 'cocktails/form_new', cocktail: 'cocktail' %>
+    </div>
+  </div>
+
+</nav>
