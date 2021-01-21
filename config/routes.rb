@@ -6,6 +6,9 @@ Rails.application.routes.draw do
     resources :posts, only: [:create]
   end
 
+  resources :doses, only: [] do
+    patch 'ingredient/:id/uplike', to: 'ingredients#uplike', as: :uplike_ingredient
+  end
   resources :ingredients, only: [:update]
 
   resources :doses, only: [:destroy]

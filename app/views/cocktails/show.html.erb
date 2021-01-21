@@ -31,7 +31,7 @@
             <div>
               <%= link_to icon('fas','heart-broken'), "#" %>
               <%= dose.ingredient.like %>
-              <%= link_to icon('fas','heart'), "#" %>
+              <%= link_to icon('fas','heart'), dose_uplike_ingredient_path(dose.ingredient), method: :patch %>
             </div>
             <%= dose.ingredient.name %> - <%= dose.quantity %>
             <%= link_to icon('fas','bomb'), dose_path(dose), method: :delete, data: { confirm: 'Do you delete this ingredient ?' }%>
