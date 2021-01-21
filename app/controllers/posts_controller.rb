@@ -6,6 +6,7 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to cocktail_path(@cocktail)
     else
+      @dose = Dose.new
       render 'cocktails/show'
     end
   end

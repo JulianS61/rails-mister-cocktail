@@ -15,7 +15,7 @@
   <body>
 
     <% unless params[:action] == "home" %>
-      <% if ['index','create'].include?(params[:action]) %>
+      <% if ['index','create'].include?(params[:action]) && params[:controller] == 'cocktails' %>
         <%= render 'shared/navbar_index', cocktail: @cocktail %>
       <% else %>
         <%= render 'shared/navbar'%>
