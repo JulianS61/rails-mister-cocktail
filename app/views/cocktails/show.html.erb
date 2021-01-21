@@ -14,7 +14,7 @@
             <%= link_to icon('fas','bomb'), cocktail_path(@cocktail), method: :delete, data: { confirm: 'Do you delete this cocktail ?' }%>
           </h1>
           <h2 class="card-trip-pricing">
-            <%= icon('fas','star') * @avg_rating %><%= icon('far','star') * ( 5 - @avg_rating) %>
+            <%#            <%= icon('fas','star') * @avg_rating %><%#<%= icon('far','star') * ( 5 - @avg_rating) %>
           </h2>
         </div>
         <p><%= simple_format(@cocktail.description) %></p>
@@ -43,7 +43,7 @@
       <% end %>
       <%= simple_form_for [@cocktail, @dose] do |f| %>
         <%= f.input :quantity, label: false, placeholder: 'Dose',input_html: { autocomplete: "off"}, wrapper_html: { class: 'mb-1' } %>
-        <%= f.association :ingredient, label: false, collection: Ingredient.order('name'), prompt: "Ingredients", wrapper_html: { class: 'mb-1' }, input_html: { class: 'multiple-select'} %>
+        <%= f.association :ingredient, label: false, collection: Ingredient.order('name'), prompt: "Ingredients", wrapper_html: { class: 'mb-1' }, input_html: { class: 'multiple-select' } %>
         <%= f.button :submit, 'Add', class: "btn btn-primary block center-block mb-1" %>
       <% end %>
     </div>

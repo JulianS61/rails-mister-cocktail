@@ -1,18 +1,9 @@
 const showDropdownOnInvalid = () => {
-  const dropdown = document.querySelector(".dropdown");
-  const dropdownToggle = dropdown.querySelector('.dropdown-toggle');
-  const dropdownMenu = dropdown.querySelector('.dropdown-menu');
-
-  const values = [];
-  dropdown.querySelectorAll(".form-group").forEach(input => {
-    if (input.firstChild.value) {
-      values.push(input.firstChild.value);
-    }
-  });
-
-  if (values.length !== 0) {
-    dropdownMenu.classList.add('show');
-    console.log(values);
+  const invalid = document.querySelector(".invalid-feedback");
+  if (invalid !== null) {
+    $('.dropdown-toggle').dropdown('show')
+    // dropdownMenu.classList.add('show');
+    console.log(invalid);
   }
 };
 

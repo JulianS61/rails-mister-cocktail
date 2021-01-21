@@ -7,6 +7,7 @@ class CocktailsController < ApplicationController
 
   def index
     @cocktails = Cocktail.all
+    @cocktail = Cocktail.new
   end
 
   def new
@@ -19,7 +20,7 @@ class CocktailsController < ApplicationController
       redirect_to cocktails_path
     else
       @cocktails = Cocktail.all
-      render :index
+      render 'cocktails/index'
     end
   end
 
